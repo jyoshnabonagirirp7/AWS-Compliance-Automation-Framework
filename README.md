@@ -75,7 +75,7 @@ Logic:
 
 Custom Lambda evaluates Monitoring State.
 
-Non-compliant instances have monitoring enabled via SSM Automation.
+Non-compliant instances have monitoring enabled via custom made SSM Automation.
 
 4. **S3 Buckets Without Required Tags**
    
@@ -85,4 +85,4 @@ Logic:
 
 Custom Lambda checks for a tag with Key=config, Value=lambda.
 
-Non-compliant buckets are automatically tagged using SSM Automation.
+Non-compliant buckets are automatically tagged using custom made SSM Automation.
