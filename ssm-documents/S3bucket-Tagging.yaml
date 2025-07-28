@@ -1,0 +1,28 @@
+schemaVersion: '0.3'
+description: Adds a required tag to an S3 bucket
+parameters:
+  AutomationAssumeRole:
+    type: String
+    description: (Required) The role that allows Automation to assume execution permissions
+  BucketName:
+    type: String
+    description: (Required) The name of the S3 bucket
+  TagKey:
+    type: String
+    description: (Required) Tag key to add
+  TagValue:
+    type: String
+    description: (Required) Tag value to add
+assumeRole: '{{ AutomationAssumeRole }}'
+mainSteps:
+  - name: AddTag
+    action: aws:executeAwsApi
+    isEnd: true
+    inputs:
+      Service: s3
+      Api: PutBucketTagging
+      Bucket: '{{ BucketName }}'
+      Tagging:
+        TagSet:
+          - Key: '{{ TagKey }}'
+            Value: '{{ TagValue }}'
