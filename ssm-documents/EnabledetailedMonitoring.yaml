@@ -1,0 +1,19 @@
+description: Enable detailed monitoring on a given EC2 instance
+schemaVersion: '0.3'
+assumeRole: '{{ AutomationAssumeRole }}'
+parameters:
+  AutomationAssumeRole:
+    type: String
+    description: (Required) The IAM role that allows Automation to perform actions on your behalf.
+  InstanceId:
+    type: String
+    description: (Required) EC2 Instance ID.
+mainSteps:
+  - name: EnableDetailedMonitoring
+    action: aws:executeAwsApi
+    isEnd: true
+    inputs:
+      Service: ec2
+      Api: MonitorInstances
+      InstanceIds:
+        - '{{ InstanceId }}'
